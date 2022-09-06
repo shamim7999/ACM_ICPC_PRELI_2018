@@ -33,8 +33,6 @@ void bfs(int node)
             odd.push_back(cost[i]);
     }
     even.push_back(0);
-    //even.push_back(0);
-    //.push_back(0);
     odd.push_back(0);
     sort(even.begin(), even.end());
     sort(odd.begin(), odd.end());
@@ -43,9 +41,7 @@ void bfs(int node)
     for(int i=1; i<even.size(); i++)
         peven[i] = peven[i-1]+even[i];
     for(int i=1; i<odd.size(); i++)
-        podd[i] = podd[i-1]+odd[i];
-    
-    
+        podd[i] = podd[i-1]+odd[i];   
 }
 
 void clr()
@@ -53,14 +49,11 @@ void clr()
     for(int i=1; i<=n; i++){
         v[i].clear();
         dis[i] = -1;
-        //odd[i] = 0;
-        //even[i] = 0;
         odd.clear();
         even.clear();
         podd[i] = 0;
         peven[i] = 0;
     }
-    //odd =0 , even = 0;
 }
 
 void solve(int kk)
@@ -83,8 +76,6 @@ void solve(int kk)
         auto f2 = upper_bound(odd.begin(), odd.end(), cost[i]) - odd.begin();
        
         if(dis[i]%2 == 0){
-
-            
             int a1 = peven[f1-1];
             int a2 = 0;
             if(f1 < s1){
@@ -95,18 +86,11 @@ void solve(int kk)
             int boro = s1 - f1;
             int t1 = choto*cost[i];
 
-            //cout << t1-a1 << "\n";
-            //return;
-
             t1 = t1 - a1;
             int t2 = boro*cost[i];
-            //cout << t2 << " " << a2 << "\n";
-            //return;
+
             t2 = t2 - a2;
             sum = t1+t2;
-
-            //cout << sum << "\n";
-            //return;
 
             a1 = podd[f2-1];
             a2 = 0;
@@ -117,21 +101,11 @@ void solve(int kk)
             choto = f2 - 1;
             boro = s2 - f2;
             t1 = choto*cost[i];
-            //cout << t1 << " " << a1 << "\n";
-            //return;
             t1 = a1 - t1;
-
-
 
             t2 = boro*cost[i];
             t2 = a2 - t2;
-
-
             sum += (t1+t2);
-            //cout << sum << "\n";
-            //return;
-
-            
         }
         else{
          
@@ -140,24 +114,14 @@ void solve(int kk)
             if(f1 < s1){
                a2 = peven[s1-1] - peven[f1-1];
             }
-
             int choto = f1 - 1;
             int boro = s1 - f1;
             int t1 = choto*cost[i];
-
-            //cout << t1-a1 << "\n";
-            //return;
-
             t1 = a1 -t1;
             int t2 = boro*cost[i];
-            //cout << t2 << " " << a2 << "\n";
-            //return;
+
             t2 = a2 - t2;
             sum = t1+t2;
-
-            //cout << sum << "\n";
-            //return;
-
             a1 = podd[f2-1];
             a2 = 0;
             if(f2 < s2){
@@ -167,25 +131,12 @@ void solve(int kk)
             choto = f2 - 1;
             boro = s2 - f2;
             t1 = choto*cost[i];
-            //cout << t1 << " " << a1 << "\n";
-            //return;
             t1 = t1 - a1;
-
-
 
             t2 = boro*cost[i];
             t2 = t2 - a2;
-
-
             sum += (t1+t2);
-            //cout << sum << "\n";
-            //return;
-
-
         }
-
-        //cout << i << " --- " << sum  << ", " << sub << "\n";
-        //cout << i << "--- " << sum << "\n";
         if(sum>=mm){
           if(sum == mm){
             node = min(node, i);
